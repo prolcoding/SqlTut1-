@@ -1,0 +1,108 @@
+--Create Table
+CREATE TABLE MaintenanceEmployee
+(EmployeeID int,
+FirstName varchar(50),
+LastName varchar(50),
+Gender varchar(50),
+Age int,
+Nationality varchar(50),
+DateJoined date)
+
+--Create Table
+CREATE TABLE EmployeeSalary
+(EmployeeID int,
+Title varchar(50),
+Department varchar(50),
+Salary int)
+
+--InsertData Into a Table
+INSERT INTO EmployeeSalary VALUES
+(2001, 'Production Manager', 'Production', 10000)
+
+INSERT INTO EmployeeSalary VALUES
+(1002, 'Teamleader', 'Maintenance', 2500 ),
+(1003, 'Electrician', 'Maintenance', 1500 ),
+(1004, 'Plumber', 'Maintenance', 950 ),
+(1005, 'Mechanic', 'Maintenance', 1800 ),
+(1006, 'Electrician', 'Maintenance', 1700 ),
+(1007, 'Manager', 'Maintenance', 7500 ),
+(1008, 'Supervisor', 'Maintenance', 4500 ),
+(1009, 'Plumber', 'Maintenance', 600 ),
+(1010, 'Plumber', 'Maintenance', 750 )
+
+
+
+
+INSERT INTO MaintenanceEmployee VALUES
+(1002, 'Aletha', 'Jain', 'Female', 57, 'Malawian', '1990-10-25'),
+(1003, 'Simba', 'Zengu', 'Male', 21, 'Zimbabwean', '2015-03-2'),
+(1004, 'Jakata', 'Jiri', 'Male', 45, 'Zambian', '2023-12-23'),
+(1005, 'Mercy', 'Chro', 'Female', 33, 'Zambian', '2018-11-20'),
+(1006, 'Tapiwa', 'Hoyo', 'Female', 35, 'Tanzanian', '2010-06-25'),
+(1007, 'Peter', 'Paul', 'Male', 65, 'South African', '2023-07-2'),
+(1008, 'Anna', 'Wezhira', 'Female', 40, 'Zimbabwean', '2021-01-5'),
+(1009, 'Jain', 'Gore', 'Male', 27, 'Zambian', '1990-01-20'),
+(10010, 'Sam', 'Sungu', 'Male', 23, 'Zambian', '2018-01-5')
+
+--Quarying 
+SELECT *
+FROM MAintenanceEmployee
+
+SELECT *
+FROM MAintenanceEmployee
+where DateJoined >'2000-1-1'
+
+Select *
+From MaintenanceEmployee
+WHERE Nationality  IN ('Zambian', 'Tanzanian', 'Malawian')
+
+SELECT *
+FROM MAintenanceEmployee
+where Gender = 'Male'
+
+SELECT *
+FROM MAintenanceEmployee
+where Gender != 'Male'
+
+SELECT *
+FROM MAintenanceEmployee
+where Age >=33
+
+SELECT *
+FROM MAintenanceEmployee
+where FirstName like 'p%'
+
+SELECT *
+FROM MAintenanceEmployee
+where FirstName like '%e%'
+
+SELECT *
+FROM MAintenanceEmployee
+where FirstName like '%m'
+
+Select * 
+FROM EmployeeSalary
+
+--Rename a Column
+sp_rename 'EmployeeSalary.EmployeeId', 'SalaryId', 'Column';
+
+
+Select EmployeeId, FirstName, Title, Department, Salary
+FROM MaintenanceEmployee m
+JOIN EmployeeSalary s
+ON m.EmployeeId = s.SalaryId
+
+Select EmployeeId, FirstName, Title, Department, Salary
+FROM MaintenanceEmployee m
+LEFT OUTER JOIN EmployeeSalary s
+ON m.EmployeeId = s.SalaryId
+
+Select EmployeeId, FirstName, Title, Department, Salary
+FROM MaintenanceEmployee m
+RIGHT OUTER JOIN EmployeeSalary s
+ON m.EmployeeId = s.SalaryId
+
+Select EmployeeId, FirstName, Title, Department, Salary
+FROM MaintenanceEmployee m
+FULL JOIN EmployeeSalary s
+ON m.EmployeeId = s.SalaryId
